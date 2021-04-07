@@ -704,4 +704,5 @@ public class AcesUpSolitaire extends JFrame
 		// Mode jeu
 		vraiePartie();
 	}
+	
 }

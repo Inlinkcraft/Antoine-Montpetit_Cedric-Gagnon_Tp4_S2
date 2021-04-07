@@ -61,7 +61,7 @@ public class Carte implements Comparable<Carte>, Serializable
 	}
 	
 	public int compareTo(Carte pCarte) {
-		return(valeur.getSymbole() + sorte.getSymbole()).compareTo(pCarte.valeur.getSymbole() + pCarte.sorte.getSymbole());
+		return((valeur.getSymbole() + sorte.getSymbole()).compareTo(pCarte.valeur.getSymbole() + pCarte.sorte.getSymbole()));
 	}
 	
 	@Override
