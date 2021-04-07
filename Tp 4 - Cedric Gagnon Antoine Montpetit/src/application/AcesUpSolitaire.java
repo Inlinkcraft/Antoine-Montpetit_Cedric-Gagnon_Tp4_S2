@@ -13,7 +13,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -304,18 +304,21 @@ public class AcesUpSolitaire extends JFrame
 			{
 				gestionNouveauJeu();
 			}
-			else if (pAE.getSource() == enregister)
-			{
-				gestionEnregistrerJeu();
-			}
-			else if (pAE.getSource() == reprendre)
-			{
-				gestionReprendreJeu();
-			}
-			else if (pAE.getSource() == fermer)
-			{
-				gestionFermer();
-			}
+			else
+				if (pAE.getSource() == enregister)
+				{
+					gestionEnregistrerJeu();
+				}
+				else
+					if (pAE.getSource() == reprendre)
+					{
+						gestionReprendreJeu();
+					}
+					else
+						if (pAE.getSource() == fermer)
+						{
+							gestionFermer();
+						}
 		}
 	}
 
@@ -518,9 +521,9 @@ public class AcesUpSolitaire extends JFrame
 	 * Permet d'enlever, selon les règles du jeu, une carte de la colonne de
 	 * cartes dont l'index de la colonne de carte est reçu en entrée.
 	 *
-	 * Faire attention, s'il ne reste que 2 cartes de la même sorte dans la colonne, 
-	 * et que celles-ci sont inférieures à une autre de la même sorte dans une autre colonne,
-	 * les 2 sont enlevées et la colonne se libère.
+	 * Faire attention, s'il ne reste que 2 cartes de la même sorte dans la
+	 * colonne, et que celles-ci sont inférieures à une autre de la même sorte
+	 * dans une autre colonne, les 2 sont enlevées et la colonne se libère.
 	 *
 	 * Il faut penser à redessiner (réafficher) la liste touchée s'il y a lieu
 	 *
@@ -547,8 +550,9 @@ public class AcesUpSolitaire extends JFrame
 
 	/**
 	 * Permet de faire la gestion des messages à présenter au joueur si la
-	 * partie est terminée parce qu'il a gagné ou qu'il ne peut plus jouer. Cette
-	 * méthode affiche des messages. Elle permet également de tricher un peu.
+	 * partie est terminée parce qu'il a gagné ou qu'il ne peut plus jouer.
+	 * Cette méthode affiche des messages. Elle permet également de tricher un
+	 * peu.
 	 */
 	public void gestionFinPartie()
 	{
@@ -594,15 +598,19 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : partieGagne
 	public boolean partieGagner()
 	{
-		
+
 		boolean asColonne = true;
 		for (int i = 0; i < colonneCartes.length; i++)
 		{
-			if (asColonne != false && !colonneCartes[i].isEmpty()) {
-				asColonne = colonneCartes[i].size() == 1 && ((Carte)colonneCartes[i].get(0)).getValeurSymbole() == ValeurCartes.V_AS.getSymbole();
+			if (asColonne != false && !colonneCartes[i].isEmpty())
+			{
+				asColonne = colonneCartes[i].size() == 1
+						&& ((Carte) colonneCartes[i].get(0))
+								.getValeurSymbole() == ValeurCartes.V_AS
+										.getSymbole();
 			}
 		}
-		
+
 		return pioche.isEmpty() && asColonne;
 	}
 
@@ -713,5 +721,5 @@ public class AcesUpSolitaire extends JFrame
 		// Mode jeu
 		vraiePartie();
 	}
-	
+
 }
