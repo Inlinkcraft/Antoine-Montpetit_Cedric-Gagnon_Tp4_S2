@@ -28,6 +28,7 @@ public class Pile implements Serializable
 	
 	public void empiler(Object pObj) {
 		sommet = new NoeudPile(pObj, sommet);
+		taille++;
 	}
 	
 	public Object getPremier() throws PileException {
@@ -41,6 +42,7 @@ public class Pile implements Serializable
 			throw new PileException("Pile vide");
 		Object temp = sommet.getElement();
 		sommet=sommet.getPrecedent();
+		taille--;
 		return(temp);
 	}
 	

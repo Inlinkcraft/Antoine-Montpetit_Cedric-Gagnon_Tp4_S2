@@ -13,7 +13,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -304,18 +304,21 @@ public class AcesUpSolitaire extends JFrame
 			{
 				gestionNouveauJeu();
 			}
-			else if (pAE.getSource() == enregister)
-			{
-				gestionEnregistrerJeu();
-			}
-			else if (pAE.getSource() == reprendre)
-			{
-				gestionReprendreJeu();
-			}
-			else if (pAE.getSource() == fermer)
-			{
-				gestionFermer();
-			}
+			else
+				if (pAE.getSource() == enregister)
+				{
+					gestionEnregistrerJeu();
+				}
+				else
+					if (pAE.getSource() == reprendre)
+					{
+						gestionReprendreJeu();
+					}
+					else
+						if (pAE.getSource() == fermer)
+						{
+							gestionFermer();
+						}
 		}
 	}
 
@@ -511,17 +514,19 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionDeplacerListe
 	public void gestionDeplacerListe(int indexColonne)
 	{
-		boolean trouve=false;
+		boolean trouve = false;
 		Carte temp;
-		for(int i=0;i<colonneCartes.length && !trouve;i++) {
-			if(colonneCartes[i].size()==0) {
-				trouve=true;
-				temp=(Carte)colonneCartes[i].remove(colonneCartes[i].size()-1);
+		for (int i = 0; i < colonneCartes.length && !trouve; i++)
+		{
+			if (!colonneCartes[indexColonne].isEmpty() && colonneCartes[i].isEmpty())
+			{
+				trouve = true;
+				temp = (Carte) colonneCartes[indexColonne].remove(0);
 				colonneCartes[i].add(temp);
 				dessinerListeCartes(i);
 				dessinerListeCartes(indexColonne);
 			}
-			
+
 		}
 	}
 
@@ -529,9 +534,9 @@ public class AcesUpSolitaire extends JFrame
 	 * Permet d'enlever, selon les règles du jeu, une carte de la colonne de
 	 * cartes dont l'index de la colonne de carte est reçu en entrée.
 	 *
-	 * Faire attention, s'il ne reste que 2 cartes de la même sorte dans la colonne, 
-	 * et que celles-ci sont inférieures à une autre de la même sorte dans une autre colonne,
-	 * les 2 sont enlevées et la colonne se libère.
+	 * Faire attention, s'il ne reste que 2 cartes de la même sorte dans la
+	 * colonne, et que celles-ci sont inférieures à une autre de la même sorte
+	 * dans une autre colonne, les 2 sont enlevées et la colonne se libère.
 	 *
 	 * Il faut penser à redessiner (réafficher) la liste touchée s'il y a lieu
 	 *
@@ -540,20 +545,42 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionEnleverListe
 	public void gestionEnleverListe(int pNoListe)
 	{
-		SorteCartes targetType = ((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getSorte();
-		ValeurCartes targetVal = ((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getValeur();
-		boolean yes=false;
-		for(int i=0;i<colonneCartes.length;i++) {
-			if(i!=pNoListe && targetType.equals(((Carte)colonneCartes[i].get(colonneCartes[i].size())).getSorte()) && targetVal.compareTo(((Carte)colonneCartes[i].get(colonneCartes[i].size())).getValeur())<0) {
-				yes=true;
+		SorteCartes targetType = ((Carte) colonneCartes[pNoListe].get(0))
+				.getSorte();
+		ValeurCartes targetVal = ((Carte) colonneCartes[pNoListe].get(0))
+				.getValeur();
+		boolean yes = false;
+		if (targetVal != ValeurCartes.V_AS)
+		{
+			for (int i = 0; i < colonneCartes.length; i++)
+			{
+				if (!colonneCartes[i].isEmpty() && i != pNoListe
+						&& targetType.equals(
+								((Carte) colonneCartes[i].get(0)).getSorte())
+						&& (targetVal
+								.compareTo(((Carte) colonneCartes[i].get(0))
+										.getValeur()) < 0
+								|| ((Carte) colonneCartes[i].get(0)).getValeur()
+										.equals(ValeurCartes.V_AS)))
+				{
+					yes = true;
+				}
 			}
-		}
-		if(yes) {
-			colonneCartes[pNoListe].remove(colonneCartes[pNoListe].size()-1);
-			if(colonneCartes[pNoListe].size()==1 &&  targetType.equals(((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getSorte()) && targetVal.compareTo(((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getValeur())>0) {
-				colonneCartes[pNoListe].remove(colonneCartes[pNoListe].size()-1);
+			if (yes)
+			{
+				colonneCartes[pNoListe].remove(0);
+				if (colonneCartes[pNoListe].size() == 1 && targetType.equals(
+						((Carte) colonneCartes[pNoListe].get(0)).getSorte())
+						&& (targetVal.compareTo(
+								((Carte) colonneCartes[pNoListe].get(0))
+										.getValeur()) > 0
+								&& !((Carte) colonneCartes[pNoListe].get(0))
+										.getValeur().equals(ValeurCartes.V_AS)))
+				{
+					colonneCartes[pNoListe].remove(0);
+				}
+				dessinerListeCartes(pNoListe);
 			}
-			dessinerListeCartes(pNoListe);
 		}
 	}
 
@@ -567,16 +594,20 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionPiger
 	public void gestionPiger()
 	{
-		for(int i=0;i<colonneCartes.length;i++) {
-			colonneCartes[i].add(pioche.piger());
+		for (int i = 0; i < colonneCartes.length; i++)
+		{
+			colonneCartes[i].add(0, pioche.piger());
 			dessinerListeCartes(i);
+			dessinerPioche();
 		}
+		gestionFinPartie();
 	}
 
 	/**
 	 * Permet de faire la gestion des messages à présenter au joueur si la
-	 * partie est terminée parce qu'il a gagné ou qu'il ne peut plus jouer. Cette
-	 * méthode affiche des messages. Elle permet également de tricher un peu.
+	 * partie est terminée parce qu'il a gagné ou qu'il ne peut plus jouer.
+	 * Cette méthode affiche des messages. Elle permet également de tricher un
+	 * peu.
 	 */
 	public void gestionFinPartie()
 	{
@@ -622,15 +653,19 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : partieGagne
 	public boolean partieGagner()
 	{
-		
+
 		boolean asColonne = true;
 		for (int i = 0; i < colonneCartes.length; i++)
 		{
-			if (asColonne != false && !colonneCartes[i].isEmpty()) {
-				asColonne = colonneCartes[i].size() == 1 && ((Carte)colonneCartes[i].get(0)).getValeurSymbole() == ValeurCartes.V_AS.getSymbole();
+			if (asColonne != false && !colonneCartes[i].isEmpty())
+			{
+				asColonne = colonneCartes[i].size() == 1
+						&& ((Carte) colonneCartes[i].get(0))
+								.getValeurSymbole() == ValeurCartes.V_AS
+										.getSymbole();
 			}
 		}
-		
+
 		return pioche.isEmpty() && asColonne;
 	}
 
@@ -741,5 +776,5 @@ public class AcesUpSolitaire extends JFrame
 		// Mode jeu
 		vraiePartie();
 	}
-	
+
 }
