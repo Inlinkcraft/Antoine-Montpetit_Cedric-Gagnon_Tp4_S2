@@ -61,9 +61,10 @@ public class Triche
 
 	/**
 	 * Cette méthode prend la carte la plus forte de la colonne et elle la monte
-	 * en haut de la colonne. En cas d'égalité (pour 2 As), la méthode considère la carte la
-	 * plus haute dans la colonne. Ça permet entre autre de changer l'As de place.
-	 * Il faut ici considérer l'As comme étant la carte la plus forte.
+	 * en haut de la colonne. En cas d'égalité (pour 2 As), la méthode considère
+	 * la carte la plus haute dans la colonne. Ça permet entre autre de changer
+	 * l'As de place. Il faut ici considérer l'As comme étant la carte la plus
+	 * forte.
 	 *
 	 * @param colonneCartes la colonne à modifier.
 	 *
@@ -71,14 +72,32 @@ public class Triche
 	// TODO Complétez le code de la méthode : tricheMonter
 	private static void tricheMonter(List colonneCartes)
 	{
+		if (!colonneCartes.isEmpty())
+		{
+			// Get la carte la plus forte
+			Carte carteForte = (Carte) colonneCartes.get(0);
 
+			for (Object objCarte : colonneCartes)
+			{
+				Carte pCarte = (Carte) objCarte;
+				if (carteForte.compareTo(pCarte) <= 0)
+				{
+					carteForte = pCarte;
+				}
+			}
+
+			// Monté la carte en haut de la colone
+			colonneCartes.remove(carteForte);
+			colonneCartes.add(0, carteForte);
+		}
 	}
 
 	/**
 	 * Cette méthode prend la carte la plus forte de la colonne et elle la
-	 * descend en bas de la colonne. En cas d'égalité (pour 2 As), la méthode considère la
-	 * carte la plus basse dans la colonne. Ça permet entre autre de changer l'As
-	 * de place. Il faut ici considérer l'As comme étant la carte la plus forte.
+	 * descend en bas de la colonne. En cas d'égalité (pour 2 As), la méthode
+	 * considère la carte la plus basse dans la colonne. Ça permet entre autre
+	 * de changer l'As de place. Il faut ici considérer l'As comme étant la
+	 * carte la plus forte.
 	 *
 	 * @param colonneCartes la colonne à modifier.
 	 *
@@ -86,7 +105,24 @@ public class Triche
 	// TODO Complétez le code de la méthode : tricheDescendre
 	private static void tricheDescendre(List colonneCartes)
 	{
+		if (!colonneCartes.isEmpty())
+		{
+			// Get la carte la plus forte
+			Carte carteForte = (Carte) colonneCartes.get(0);
 
+			for (Object objCarte : colonneCartes)
+			{
+				Carte pCarte = (Carte) objCarte;
+				if (carteForte.compareTo(pCarte) <= 0)
+				{
+					carteForte = pCarte;
+				}
+			}
+
+			// Monté la carte en bas de la colone
+			colonneCartes.remove(carteForte);
+			colonneCartes.add(carteForte);
+		}
 	}
 
 }
