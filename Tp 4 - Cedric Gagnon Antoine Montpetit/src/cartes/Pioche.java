@@ -37,4 +37,8 @@ public class Pioche implements Serializable
 	public int size() {
 		return(pioche.size());
 	}
+	
+	public String toString() {
+		return(pioche.getPremier().toString());
+	}
 }

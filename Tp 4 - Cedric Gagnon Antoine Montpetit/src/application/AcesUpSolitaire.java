@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -594,13 +595,14 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionPiger
 	public void gestionPiger()
 	{
-		for (int i = 0; i < colonneCartes.length; i++)
-		{
-			colonneCartes[i].add(0, pioche.piger());
-			dessinerListeCartes(i);
-			dessinerPioche();
+		if(!pioche.isEmpty()) {
+			for (int i = 0; i < colonneCartes.length; i++)
+			{
+				colonneCartes[i].add(0, pioche.piger());
+				dessinerListeCartes(i);
+				dessinerPioche();
+			}
 		}
-		gestionFinPartie();
 	}
 
 	/**
@@ -718,7 +720,11 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : enregistrerInfoPartie
 	public void enregistrerInfoPartie(File pCible) throws IOException
 	{
-
+		ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream(pCible));
+		save.writeObject(pioche);
+		save.writeObject(colonneCartes);
+		save.writeObject(nbTriche);
+		save.close();
 	}
 
 	/**
@@ -734,7 +740,11 @@ public class AcesUpSolitaire extends JFrame
 	public void lireInfoPartie(File pSource)
 			throws IOException, ClassNotFoundException
 	{
-
+		ObjectInputStream load = new ObjectInputStream(new FileInputStream(pSource));
+		pioche=(Pioche)load.readObject();
+		colonneCartes=(List[])load.readObject();
+		nbTriche=(int)load.readObject();
+		load.close();
 	}
 
 	private static void partiePiper()
