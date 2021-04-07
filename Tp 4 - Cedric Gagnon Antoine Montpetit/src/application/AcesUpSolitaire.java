@@ -322,7 +322,7 @@ public class AcesUpSolitaire extends JFrame
 	/**
 	 * Classe interne qui permet de faire l'écoute des boutons
 	 *
-	 * @author Vos noms
+	 * @author Cédric Gagnon, Antoine Montpetit
 	 */
 	private class ActionBouton implements ActionListener
 	{
@@ -367,7 +367,7 @@ public class AcesUpSolitaire extends JFrame
 	/**
 	 * Classe interne qui permet de faire l'écoute des évènements de la souris
 	 *
-	 * @author Vos noms
+	 * @author Cédric Gagnon, Antoine Montpetit
 	 */
 	private class ActionSouris extends MouseAdapter
 	{
@@ -511,7 +511,18 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionDeplacerListe
 	public void gestionDeplacerListe(int indexColonne)
 	{
-
+		boolean trouve=false;
+		Carte temp;
+		for(int i=0;i<colonneCartes.length && !trouve;i++) {
+			if(colonneCartes[i].size()==0) {
+				trouve=true;
+				temp=(Carte)colonneCartes[i].remove(colonneCartes[i].size()-1);
+				colonneCartes[i].add(temp);
+				dessinerListeCartes(i);
+				dessinerListeCartes(indexColonne);
+			}
+			
+		}
 	}
 
 	/**
@@ -529,7 +540,21 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionEnleverListe
 	public void gestionEnleverListe(int pNoListe)
 	{
-
+		SorteCartes targetType = ((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getSorte();
+		ValeurCartes targetVal = ((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getValeur();
+		boolean yes=false;
+		for(int i=0;i<colonneCartes.length;i++) {
+			if(i!=pNoListe && targetType.equals(((Carte)colonneCartes[i].get(colonneCartes[i].size())).getSorte()) && targetVal.compareTo(((Carte)colonneCartes[i].get(colonneCartes[i].size())).getValeur())<0) {
+				yes=true;
+			}
+		}
+		if(yes) {
+			colonneCartes[pNoListe].remove(colonneCartes[pNoListe].size()-1);
+			if(colonneCartes[pNoListe].size()==1 &&  targetType.equals(((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getSorte()) && targetVal.compareTo(((Carte)colonneCartes[pNoListe].get(colonneCartes[pNoListe].size())).getValeur())>0) {
+				colonneCartes[pNoListe].remove(colonneCartes[pNoListe].size()-1);
+			}
+			dessinerListeCartes(pNoListe);
+		}
 	}
 
 	/**
@@ -542,7 +567,10 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : gestionPiger
 	public void gestionPiger()
 	{
-
+		for(int i=0;i<colonneCartes.length;i++) {
+			colonneCartes[i].add(pioche.piger());
+			dessinerListeCartes(i);
+		}
 	}
 
 	/**
