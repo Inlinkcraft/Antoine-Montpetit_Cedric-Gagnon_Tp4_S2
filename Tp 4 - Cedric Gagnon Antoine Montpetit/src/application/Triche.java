@@ -80,7 +80,7 @@ public class Triche
 			for (Object objCarte : colonneCartes)
 			{
 				Carte pCarte = (Carte) objCarte;
-				if (carteForte.compareTo(pCarte) < 0)
+				if (!carteForte.getValeur().equals(ValeurCartes.V_AS) && (carteForte.compareTo(pCarte) < 0 || pCarte.getValeur().equals(ValeurCartes.V_AS)))
 				{
 					carteForte = pCarte;
 				}
@@ -113,7 +113,7 @@ public class Triche
 			for (Object objCarte : colonneCartes)
 			{
 				Carte pCarte = (Carte) objCarte;
-				if (carteForte.compareTo(pCarte) < 0)
+				if (!carteForte.getValeur().equals(ValeurCartes.V_AS) && (carteForte.compareTo(pCarte) < 0 || pCarte.getValeur().equals(ValeurCartes.V_AS)))
 				{
 					carteForte = pCarte;
 				}
