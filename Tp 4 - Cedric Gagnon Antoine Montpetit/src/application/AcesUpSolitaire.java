@@ -594,7 +594,16 @@ public class AcesUpSolitaire extends JFrame
 	// TODO Complétez le code de la méthode : partieGagne
 	public boolean partieGagner()
 	{
-		return true;
+		
+		boolean asColonne = true;
+		for (int i = 0; i < colonneCartes.length; i++)
+		{
+			if (asColonne != false && !colonneCartes[i].isEmpty()) {
+				asColonne = colonneCartes[i].size() == 1 && ((Carte)colonneCartes[i].get(0)).getValeurSymbole() == ValeurCartes.V_AS.getSymbole();
+			}
+		}
+		
+		return pioche.isEmpty() && asColonne;
 	}
 
 	/**
