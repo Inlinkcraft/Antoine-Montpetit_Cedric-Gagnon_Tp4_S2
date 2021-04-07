@@ -80,7 +80,7 @@ public class Triche
 			for (Object objCarte : colonneCartes)
 			{
 				Carte pCarte = (Carte) objCarte;
-				if (carteForte.compareTo(pCarte) <= 0)
+				if (carteForte.compareTo(pCarte) < 0)
 				{
 					carteForte = pCarte;
 				}
@@ -88,7 +88,7 @@ public class Triche
 
 			// Monté la carte en haut de la colone
 			colonneCartes.remove(carteForte);
-			colonneCartes.add(0, carteForte);
+			colonneCartes.add(carteForte);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class Triche
 			for (Object objCarte : colonneCartes)
 			{
 				Carte pCarte = (Carte) objCarte;
-				if (carteForte.compareTo(pCarte) <= 0)
+				if (carteForte.compareTo(pCarte) < 0)
 				{
 					carteForte = pCarte;
 				}
@@ -121,7 +121,7 @@ public class Triche
 
 			// Monté la carte en bas de la colone
 			colonneCartes.remove(carteForte);
-			colonneCartes.add(carteForte);
+			colonneCartes.add(0,carteForte);
 		}
 	}
 
