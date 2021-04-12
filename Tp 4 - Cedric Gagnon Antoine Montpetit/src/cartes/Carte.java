@@ -2,6 +2,12 @@ package cartes;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author Cedric Gagnon
+ * @version printemps 2021
+ * 
+ */
 public class Carte implements Comparable<Carte>, Serializable
 {
 	
