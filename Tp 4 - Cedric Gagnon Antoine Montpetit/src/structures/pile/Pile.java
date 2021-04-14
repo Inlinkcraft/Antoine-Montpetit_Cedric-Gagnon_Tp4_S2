@@ -35,15 +35,15 @@ public class Pile implements Serializable
 	}
 	
 	/**
-	 * Retourne vrai si la pile est vide
-	 * @return - true si la pile est vide
+	 * Vérifie si la pile est vide
+	 * @return vrai si elle est vide
 	 */
 	public boolean isEmpty() {
 		return(sommet==null);
 	}
 	
 	/**
-	 * Suprime tous les élément d'une pile
+	 * Vide la pile
 	 */
 	public void vider() {
 		sommet=null;
@@ -52,7 +52,7 @@ public class Pile implements Serializable
 	
 	/**
 	 * Empile un objet dans la pile.
-	 * @param pObj - le nouveau element
+	 * @param pObj, - l'élément à empiler
 	 */
 	public void empiler(Object pObj) {
 		sommet = new NoeudPile(pObj, sommet);
@@ -60,9 +60,9 @@ public class Pile implements Serializable
 	}
 	
 	/**
-	 * Retourne le premier object de la pile
-	 * @return - le premier object de la pile
-	 * @throws PileException - si la pile est vide
+	 * Retourne l'objet contenu dans le noeud sur le dessus de la pile sans le dépiler.
+	 * @return l'objet sur le dessus de la pile.
+	 * @throws exceptions.PileException
 	 */
 	public Object getPremier() throws PileException {
 		if(sommet==null)
@@ -72,8 +72,8 @@ public class Pile implements Serializable
 	
 	/**
 	 * Retourne l'objet dépilé.
-	 * @return - le premier élement de la pile
-	 * @throws PileException - si la pile est vide
+	 * @return l'élément dépilé
+	 * @throws PileException
 	 */
 	public Object depiler() throws PileException {
 		if(sommet==null)
@@ -85,14 +85,18 @@ public class Pile implements Serializable
 	}
 	
 	/**
-	 * Retourne la grosseur de la pile
-	 * @return - la grosseur de la pile
+	 * Retourne le nombre d'éléments dans la pile
+	 * @return le nombre d'éléments dans la pile
 	 */
 	public int size() {
 		return(taille);
 	}
 	
 	@Override
+	/**
+	 * Permet de créer une chaîne représentant les éléments qui sont dans la pile.
+	 * @return String representation
+	 */
 	public String toString() {
 		String out = "";
 		NoeudPile current = sommet;
