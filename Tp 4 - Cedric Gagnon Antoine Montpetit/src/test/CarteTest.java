@@ -165,7 +165,15 @@ public class CarteTest
 	@Test
 	public void testToString()
 	{
-		
+		c1.setVisible(false);
+		c2.setVisible(true);
+		c3.setVisible(false);
+		c4.setVisible(true);
+
+		assertEquals((String)c1.toString(), (String)(c1.getValeurSymbole() + "" + c1.getSorteSymbole()));
+		assertEquals((String)c2.toString(), (String)(c2.getValeurSymbole() + "" + c2.getSorteSymbole()));
+		assertEquals((String)c3.toString(), (String)(c3.getValeurSymbole() + "" + c3.getSorteSymbole()));
+		assertEquals((String)c4.toString(), (String)(c4.getValeurSymbole() + "" + c4.getSorteSymbole()));
 	}
 
 }
