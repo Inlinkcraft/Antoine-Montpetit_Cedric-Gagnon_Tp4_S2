@@ -30,7 +30,7 @@ public class Pioche implements Serializable
 	 */
 	public Pioche(PaquetDeCartes paquet) {
 		pioche = new Pile();
-		while(paquet.size()>0) {
+		while(paquet!=null && paquet.size()>0) {
 			pioche.empiler(paquet.prendreCarte(paquet.size()));
 		}
 	}
