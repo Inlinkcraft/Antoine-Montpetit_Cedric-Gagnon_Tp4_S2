@@ -2,7 +2,7 @@ package cartes;
 
 import java.io.Serializable;
 
-import exception.PiocheException;
+import exceptions.PiocheException;
 import structures.pile.Pile;
 
 /**
@@ -15,18 +15,18 @@ public class Pioche implements Serializable
 {
 	
 	/**
-	 * Compare to serialVersionUID value
+	 * 
 	 */
 	private static final long serialVersionUID = -5454905195453222565L;
 	
 	/**
-	 * La pioche
+	 * la pile qui va représenter notre pioche
 	 */
 	private Pile pioche;
 	
 	/**
-	 * Crée une pioche avec un paquet défénit
-	 * @param paquet - le paquet
+	 * Constructeur.
+	 * @param paquet, - le paquet de cartes à mettre dans la pioche. Peut être un pointeur "null", qui donne une pioche vide.
 	 */
 	public Pioche(PaquetDeCartes paquet) {
 		pioche = new Pile();
@@ -36,34 +36,35 @@ public class Pioche implements Serializable
 	}
 	
 	/**
-	 * Pige une carte de la pioche
-	 * @return - une carte
+	 * Permet de piger une carte sur le dessus du paquet.
+	 * @return la carte pigée ou null si le paquet est vide.
 	 */
 	public Carte piger() {
 		return(pioche.size()>0?(Carte)pioche.depiler():null);
 	}
 	
 	/**
-	 * retourne la carte sur le dessus de la pioche
-	 * @return - la carte du dessu de la pioche
+	 * Permet de voir la carte du dessus sans la piger.
+	 * @return une chaîne qui représente la carte du dessus si la pioche n'est pas vide.
+	 * @throws exceptions.PiocheException
 	 */
-	public String consulterDessus() {
+	public String consulterDessus() throws exceptions.PiocheException {
 		if(pioche.isEmpty())
 			throw new PiocheException("Pioche vide");
 		return(((Carte)pioche.getPremier()).toStringCarte());
 	}
 	
 	/**
-	 * Retourne vrai si la pioche est vide
-	 * @return - true si la pioche est vide
+	 * Permet de savoir si la pioche est vide
+	 * @return vrai si la pioche est vide.
 	 */
 	public boolean isEmpty() {
 		return(pioche.isEmpty());
 	}
 	
 	/**
-	 * Retourne la grosseur de la pioche
-	 * @return - la grosseur de la pioche
+	 * Retourne la taille de la pioche
+	 * @return la taille.
 	 */
 	public int size() {
 		return(pioche.size());

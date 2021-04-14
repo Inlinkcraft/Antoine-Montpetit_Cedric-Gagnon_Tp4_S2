@@ -12,123 +12,141 @@ public class Carte implements Comparable<Carte>, Serializable
 {
 	
 	/**
-	 * Comparable serialVesionUID Value
+	 * 
 	 */
 	private static final long serialVersionUID = -7258697722759706370L;
 
 	/**
-	 * ?
+	 * Image du dos de la carte
 	 */
 	public static final char IMAGE_DOS = '☺';
 	
 	/**
-	 * la carte est visible
+	 * Un boolean pour savoir si une carte est face visible (vrai) ou pas (faux)
 	 */
 	private boolean visible = false;
 	
 	/**
-	 * La sorte de la carte
+	 * La sorte de la carte (Coeur, carreau, pique et trèfle).
 	 */
 	private SorteCartes sorte;
 	
 	/**
-	 * La valuer de la carte
+	 * La valeur de la carte.
 	 */
 	private ValeurCartes valeur;
 	
 	/**
-	 * Créé une carte avec une valeur et une sorte
+	 * Constructeur avec paramètres.
 	 * @param pValeur - la valeur de la carte
-	 * @param pSorte - la sorte de la carte
+	 * @param pSorte - la sorte de la carte (Coeur, carreau, pique et trèfle)
 	 */
-	public Carte(ValeurCartes pValeur, SorteCartes pSorte) {
+	public Carte(ValeurCartes pValeur, SorteCartes pSorte) throws exceptions.ConstructeurException {
+		if(pValeur==null || pSorte == null)
+			throw new exceptions.ConstructeurException();
 		sorte=pSorte;
 		valeur=pValeur;
 	}
 	
 	/**
-	 * retourne la valeur de la carte
-	 * @return - la valeur de la carte
+	 * Obtenir la valeur de la carte
+	 * @return un objet de l'énumération.
 	 */
 	public ValeurCartes getValeur() {
 		return(valeur);
 	}
 	
 	/**
-	 * Défénit la valeur de la carte
-	 * @param pValeur - la nouvelle valeur de la carte
+	 * Mettre à jour la valeur de la carte
+	 * @param pValeur - la nouvelle valeur de la carte, null n'est pas accepté
 	 */
 	private void setValeur(ValeurCartes pValeur) {
-		valeur=pValeur;
+		if(pValeur!=null) {
+			valeur=pValeur;
+		}
 	}
 	
 	/**
-	 * Retourn de le symbole de la carte
-	 * @return - le symbole de la carte
+	 * Obtenir la représentation chaîne de caractères pour la valeur de la carte.
+	 * @return la chaîne représentant la valeur de la carte.
 	 */
 	public String getValeurSymbole() {
 		return(valeur.getSymbole());
 	}
 	
 	/**
-	 * retourne la sorte de la carte
-	 * @return - la sorte de la carte
+	 * Obtenir la sorte de carte (Coeur, carreau, pique et trèfle)
+	 * @return un objet énumération qui représente la sorte de la carte
 	 */
 	public SorteCartes getSorte() {
 		return(sorte);
 	}
 	
 	/**
-	 * Défénit une nouvelle sorte de carte
-	 * @param pSorte - la nouvelle sorte de carte
+	 * Mettre à jour la sorte de carte
+	 * @param pSorte - la nouvelle sorte de carte, null n'est pas accepté
 	 */
 	private void setSorte(SorteCartes pSorte) {
-		sorte=pSorte;
+		if(pSorte!=null) {
+			sorte=pSorte;
+		}
 	}
 	
 	/**
-	 * Retourne le symbole de la carte
-	 * @return - le symbole de la carte
+	 * Obtenir la représentation caractère pour la sorte de carte.
+	 * @return le caractère représentant la sorte de carte.
 	 */
 	public char getSorteSymbole() {
 		return(sorte.getSymbole());
 	}
 	
 	/**
-	 * retourne la visibilité de la carte
-	 * @return - true si la carte est visible
+	 * Permet de savoir si une carte est visible (face vers le haut ou pas)
+	 * @return vrai si la face est vers le haut
 	 */
 	public boolean estVisible() {
 		return(visible);
 	}
 	
 	/**
-	 * Défénit la visibilité de la carte
-	 * @param pVisible - la nouvelle visibilité de la carte
+	 * Permet de modifier la visibilité d'une carte (retourne la carte), soit on voit le dos avec "false" ou sa face visible avec "true"
+	 * @param pVisible - , vrai si on veut que la carte soit visible, faux sinon.
 	 */
 	public void setVisible(boolean pVisible) {
 		visible=pVisible;
 	}
 	
 	/**
-	 * Retourne un string de la carte
-	 * @return - un string de la carte
+	 * Retourne l'image de la carte selon sa visibilité.
+	 * @return l'image de la carte. Une concaténation du symbole de la valeur et du symbole de la sorte OU l'image du dos
 	 */
 	public String toStringCarte() {
 		return(visible ? (valeur.getSymbole()+sorte.getSymbole()):(IMAGE_DOS+""));
 	}
 	
 	@Override
+	/**
+	 * Permet de savoir si deux cartes sont égales en terme de valeur et de sorte.
+	 * @param obj - , l'objet à comparer avec l'objet courant "this"
+	 * @return vrai si les deux cartes sont visibles et qu'elles ont la même valeur et la même sorte.
+	 */
 	public boolean equals(Object pObject) {
 		return(pObject instanceof Carte && sorte.equals(((Carte)pObject).sorte) && valeur.equals(((Carte)pObject).valeur) && visible==((Carte)pObject).visible);
 	}
 	
-	@Override
+	/**
+	 * Compare 2 cartes selon leur valeur et leur sorte.
+	 * @param obj, - l'objet carte à comparer
+	 * @return une valeur négative ou = à 0 ou positive selon que l'objet courant est plus < ou = ou > que l'objet reçu en entrée.
+	 */
 	public int compareTo(Carte pCarte) {
 		return((valeur.getSymbole() + sorte.getSymbole()).compareTo(pCarte.valeur.getSymbole() + pCarte.sorte.getSymbole()));
 	}
 	
 	@Override
+	/**
+	 * Obtenir une chaîne des infos au sujet d'une carte.
+	 */
 	public String toString() {
 		return(valeur.getSymbole()+sorte.getSymbole());
 		//return(valeur.getSymbole()+sorte.getSymbole()+", "+visible);
