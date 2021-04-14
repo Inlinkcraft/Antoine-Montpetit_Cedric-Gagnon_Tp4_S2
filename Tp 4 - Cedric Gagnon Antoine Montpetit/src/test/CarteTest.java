@@ -77,10 +77,10 @@ public class CarteTest
 	@Test
 	public void testGetSorteSymbole()
 	{
-		assertEquals(c1.getSorte(), SorteCartes.COEUR.getSymbole());
-		assertEquals(c2.getSorte(), SorteCartes.TREFLE.getSymbole());
-		assertEquals(c3.getSorte(), SorteCartes.CARREAU.getSymbole());
-		assertEquals(c4.getSorte(), SorteCartes.PIQUE.getSymbole());
+		assertEquals(c1.getSorteSymbole(), SorteCartes.COEUR.getSymbole());
+		assertEquals(c2.getSorteSymbole(), SorteCartes.TREFLE.getSymbole());
+		assertEquals(c3.getSorteSymbole(), SorteCartes.CARREAU.getSymbole());
+		assertEquals(c4.getSorteSymbole(), SorteCartes.PIQUE.getSymbole());
 	}
 
 	@Test
@@ -170,10 +170,10 @@ public class CarteTest
 		c3.setVisible(false);
 		c4.setVisible(true);
 
-		assertEquals((String)c1.toString(), (String)(c1.getValeurSymbole() + "" + c1.getSorteSymbole()));
-		assertEquals((String)c2.toString(), (String)(c2.getValeurSymbole() + "" + c2.getSorteSymbole()));
-		assertEquals((String)c3.toString(), (String)(c3.getValeurSymbole() + "" + c3.getSorteSymbole()));
-		assertEquals((String)c4.toString(), (String)(c4.getValeurSymbole() + "" + c4.getSorteSymbole()));
+		assertEquals(c1.toString(), c1.getValeurSymbole() + "" + c1.getSorteSymbole());
+		assertEquals(c2.toString(), c2.getValeurSymbole() + "" + c2.getSorteSymbole());
+		assertEquals(c3.toString(), c3.getValeurSymbole() + "" + c3.getSorteSymbole());
+		assertEquals(c4.toString(), c4.getValeurSymbole() + "" + c4.getSorteSymbole());
 	}
 
 }
