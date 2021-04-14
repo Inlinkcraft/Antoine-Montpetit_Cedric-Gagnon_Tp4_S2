@@ -165,7 +165,7 @@ public class CarteTest
 	@Test
 	public void testToString()
 	{
-		fail("Not yet implemented");
+		
 	}
 
 }
