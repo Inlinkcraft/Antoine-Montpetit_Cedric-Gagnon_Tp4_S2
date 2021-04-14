@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.PileException;
+import exceptions.PileException;
 import structures.pile.Pile;
 
 public class PileTest
