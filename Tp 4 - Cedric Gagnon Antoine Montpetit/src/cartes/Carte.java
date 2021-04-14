@@ -152,7 +152,7 @@ public class Carte implements Comparable<Carte>, Serializable
 	 * Obtenir une chaîne des infos au sujet d'une carte.
 	 */
 	public String toString() {
-		return(valeur.getSymbole()+sorte.getSymbole());
+		return(new String(valeur.getSymbole()+sorte.getSymbole()));
 		//return(valeur.getSymbole()+sorte.getSymbole()+", "+visible);
 	}
 }
