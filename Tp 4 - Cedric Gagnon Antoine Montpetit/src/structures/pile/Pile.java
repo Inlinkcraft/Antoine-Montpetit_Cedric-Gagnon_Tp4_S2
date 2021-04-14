@@ -2,7 +2,7 @@ package structures.pile;
 
 import java.io.Serializable;
 
-import exception.PileException;
+import exceptions.PileException;
 
 /**
  * 
@@ -13,22 +13,22 @@ import exception.PileException;
 public class Pile implements Serializable
 {
 	/**
-	 * Compare to serialVersionUID value
+	 * 
 	 */
 	private static final long serialVersionUID = -5590576741359778573L;
 	
 	/**
-	 * la taille de la pile
+	 * Conserve le nombre d'éléments dans la pile
 	 */
 	private int taille = 0;
 	
 	/**
-	 * Le noeu qui est au sommet de la pile
+	 * Pointeur pour le sommet de la pile
 	 */
 	private NoeudPile sommet = null;
 	
 	/**
-	 * Crée une nouvelle pile vide
+	 * Construit une pile vide
 	 */
 	public Pile() {
 		vider();
@@ -51,7 +51,7 @@ public class Pile implements Serializable
 	}
 	
 	/**
-	 * Empile un nouveau élément dans la pile
+	 * Empile un objet dans la pile.
 	 * @param pObj - le nouveau element
 	 */
 	public void empiler(Object pObj) {
@@ -71,7 +71,7 @@ public class Pile implements Serializable
 	}
 	
 	/**
-	 * Enleve le premier élément de la pile
+	 * Retourne l'objet dépilé.
 	 * @return - le premier élement de la pile
 	 * @throws PileException - si la pile est vide
 	 */

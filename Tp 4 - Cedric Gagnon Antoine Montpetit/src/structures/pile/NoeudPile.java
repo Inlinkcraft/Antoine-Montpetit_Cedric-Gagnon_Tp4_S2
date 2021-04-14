@@ -12,32 +12,32 @@ public class NoeudPile implements Serializable
 {
 
 	/**
-	 * Compare to serialVersionUID value
+	 * 
 	 */
 	private static final long serialVersionUID = 8903760988209232121L;
 	
 	/**
-	 * element contenue
+	 * Élément à conserver
 	 */
 	private Object element = null;
 	
 	/**
-	 * le noeu précédent
+	 * Pointeur sur le noeud qui est en dessous
 	 */
 	private NoeudPile precedent = null;
 	
 	/**
-	 * Crée un noeu avec un element
-	 * @param elem - l'élement contenue
+	 * Constructeur
+	 * @param elem, - l'élément à mettre dans le noeud
 	 */
 	public NoeudPile(Object elem) {
 		element = elem;
 	}
 	
 	/**
-	 * Crée un noeu avec un element et un noeu précédent
-	 * @param elem - l'élement contenue
-	 * @param prev - le noeu précédent
+	 * Constructeur
+	 * @param elem, - l'élément à mettre dans le noeud
+	 * @param prev, - un pointeur sur un NoeudPile
 	 */
 	public NoeudPile(Object elem, NoeudPile prev) {
 		element = elem;
@@ -45,32 +45,32 @@ public class NoeudPile implements Serializable
 	}
 	
 	/**
-	 * Retourne l'élement du noeu
-	 * @return - l'élement
+	 * Obtenir l'élément contenu dans le noeud
+	 * @return, l'objet dans le noeud
 	 */
 	public Object getElement() {
 		return(element);
 	}
 	
 	/**
-	 * Défénit un nouveau élement dans le noeu
-	 * @param elem - le noueveau élément
+	 * Modifier la valeur de l'élément contenu dans le noeud
+	 * @param elem, - l'élément à mettre à jour
 	 */
 	public void setElement(Object elem) {
 		element=elem;
 	}
 	
 	/**
-	 * Retourne le noeu précédent dans la pile
-	 * @return
+	 * Obtenir une référence sur le noeud précédent.
+	 * @return, le pointeur sur le noeud précédent
 	 */
 	public NoeudPile getPrecedent() {
 		return(precedent);
 	}
 	
 	/**
-	 * Défénit un nouveau noeu précédent
-	 * @param prev - le nouveau noeu précédent
+	 * Modifier la valeur de la référence du noeud précédent.
+	 * @param prev, - le pointeur du nouveau précédent
 	 */
 	public void setPrecedent(NoeudPile prev) {
 		precedent = prev;
