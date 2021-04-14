@@ -46,7 +46,7 @@ public class Pioche implements Serializable
 	/**
 	 * Permet de voir la carte du dessus sans la piger.
 	 * @return une chaîne qui représente la carte du dessus si la pioche n'est pas vide.
-	 * @throws exceptions.PiocheException
+	 * @throws exceptions.PiocheException - eception
 	 */
 	public String consulterDessus() throws exceptions.PiocheException {
 		if(pioche.isEmpty())

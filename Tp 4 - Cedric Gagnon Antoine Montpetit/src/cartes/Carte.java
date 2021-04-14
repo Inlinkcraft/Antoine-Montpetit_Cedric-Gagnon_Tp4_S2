@@ -136,8 +136,8 @@ public class Carte implements Comparable<Carte>, Serializable
 	
 	/**
 	 * Compare 2 cartes selon leur valeur et leur sorte.
-	 * @param obj, - l'objet carte à comparer
-	 * @return une valeur négative ou = à 0 ou positive selon que l'objet courant est plus < ou = ou > que l'objet reçu en entrée.
+	 * @param pCarte, - l'objet carte à comparer
+	 * @return une valeur négative ou = à 0 ou positive selon que l'objet courant est plus &lt; ou = ou &gt; que l'objet reçu en entrée.
 	 */
 	public int compareTo(Carte pCarte) {
 		return(int)Math.signum((pCarte==null)?1:(0 + ((getValeur().getValeur()==pCarte.getValeur().getValeur())?((getSorte().getSymbole()+"").compareTo(pCarte.getSorte().getSymbole()+"")):(getValeur().getValeur()-pCarte.getValeur().getValeur()))));

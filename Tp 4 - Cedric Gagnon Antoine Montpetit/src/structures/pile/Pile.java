@@ -62,7 +62,7 @@ public class Pile implements Serializable
 	/**
 	 * Retourne l'objet contenu dans le noeud sur le dessus de la pile sans le dépiler.
 	 * @return l'objet sur le dessus de la pile.
-	 * @throws exceptions.PileException
+	 * @throws exceptions.PileException - execption
 	 */
 	public Object getPremier() throws PileException {
 		if(sommet==null)
@@ -73,7 +73,7 @@ public class Pile implements Serializable
 	/**
 	 * Retourne l'objet dépilé.
 	 * @return l'élément dépilé
-	 * @throws PileException
+	 * @throws PileException - exeption
 	 */
 	public Object depiler() throws PileException {
 		if(sommet==null)

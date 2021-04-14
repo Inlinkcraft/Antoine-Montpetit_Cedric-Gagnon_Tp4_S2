@@ -122,7 +122,7 @@ public class PaquetDeCartes implements Serializable
 	
 	/**
 	 * Valide si l'entier reçu en entrée est valide selon le nombre de cartes dans le paquet.
-	 * @param - , une position dans le paquet entre 1 et la taille du paquet
+	 * @param position - , une position dans le paquet entre 1 et la taille du paquet
 	 * @return vrai si l'entier est valide selon le nombre de cartes dans le paquet
 	 */
 	private boolean validerPosition(int position) {
